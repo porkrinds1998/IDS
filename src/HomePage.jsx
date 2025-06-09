@@ -1,0 +1,84 @@
+export default function HomePage() {
+  return (
+    <div className="p-6 max-w-4xl mx-auto space-y-8 text-blue-900">
+      <header className="text-center">
+        <img src="/logo.png" alt="Integral Data Systems Logo" className="mx-auto mb-4 w-32" />
+        <h1 className="text-4xl font-bold mb-2">Integral Data Systems</h1>
+        <p className="text-lg text-gray-700">Helping small businesses automate, visualize, and leverage their data.</p>
+      </header>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">🛠 Services</h2>
+        <ul className="space-y-2">
+          <li><strong>PDF & Document Data Extraction:</strong> Extract and standardize data from PDFs, ideal for invoices and statements.</li>
+          <li><strong>Data Cleanup & Transformation:</strong> Monarch/MDPS workflows, Excel reformatting, custom formulas.</li>
+          <li><strong>Dashboard & Report Development:</strong> Power BI, Excel dashboards, KPI design, report automation.</li>
+          <li><strong>Web Data Collection:</strong> Python-based scraping scripts with scheduling and export to CSV.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">📁 Portfolio Projects</h2>
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-xl font-semibold">Automated Financial Statement Cleanup</h3>
+            <p><strong>Tools:</strong> Altair Monarch, Excel</p>
+            <p><strong>Challenge:</strong> Monthly financial PDFs from 5 vendors with inconsistent formats.</p>
+            <p><strong>Solution:</strong> Built a Monarch workflow to trap and clean data, output to Excel and Power BI.</p>
+            <p><strong>Outcome:</strong> Saved 8 hours/month and reduced errors, saving over $6,000 annually.</p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold">Competitor Price Monitoring Script</h3>
+            <p><strong>Tools:</strong> Python, BeautifulSoup, Power BI</p>
+            <p><strong>Challenge:</strong> Track competitor pricing for 30 products across 3 e-commerce sites.</p>
+            <p><strong>Solution:</strong> Web scraper feeding CSVs into Power BI dashboard with alerting.</p>
+            <p><strong>Outcome:</strong> Improved price competitiveness by 40%.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">💸 Pricing</h2>
+        <table className="w-full table-auto border border-blue-300">
+          <thead>
+            <tr className="bg-blue-100">
+              <th className="border p-2 text-left">Service</th>
+              <th className="border p-2 text-left">Price</th>
+              <th className="border p-2 text-left">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border p-2">Data Cleanup & Prep</td>
+              <td className="border p-2">$60/hr or $500/project</td>
+              <td className="border p-2">Includes PDFs, Excel, joins, formulas</td>
+            </tr>
+            <tr>
+              <td className="border p-2">Custom Dashboard</td>
+              <td className="border p-2">Starts at $700</td>
+              <td className="border p-2">Power BI or Excel, includes training</td>
+            </tr>
+            <tr>
+              <td className="border p-2">Web Scraping Scripts</td>
+              <td className="border p-2">$300–$900/project</td>
+              <td className="border p-2">Depends on complexity</td>
+            </tr>
+            <tr>
+              <td className="border p-2">Ongoing Support</td>
+              <td className="border p-2">$250/month</td>
+              <td className="border p-2">Covers 4 hours of maintenance</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section className="text-center space-y-2">
+        <h2 className="text-2xl font-semibold">📞 Let's Talk</h2>
+        <p>Book a free 30-minute audit of your data process. No strings attached.</p>
+        <p>Email: <a href="mailto:your.email@example.com" className="text-blue-600">your.email@example.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" className="text-blue-600">linkedin.com/in/yourprofile</a></p>
+      </section>
+    </div>
+  );
+}
