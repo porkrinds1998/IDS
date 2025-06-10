@@ -15,15 +15,6 @@
     header {
         background-color: #F0F8FF;
     }
-    section1 {
-        background-color: #DDEAF2;
-    }
-    section3 {
-        background-color: #DDEAF2;
-    }
-    
-
-    
     .flip-card {
       background-color: transparent;
       width: 100%;
@@ -64,18 +55,27 @@
     }
   </style>
   
-  </head>
+  <header class="fixed top-0 left-0 w-full bg-white shadow p-4 flex justify-between items-center z-50">
+    
+    <div class="flex items-center space-x-4">
+      <img src="logo.png" alt="Logo" class="h-12" />
+      <h1 class="text-2xl font-bold text-blue-900">Integral Data Systems</h1>
+    </div>
+    <nav class="space-x-4">
+      <a href="services.html" class="text-blue-700 hover:underline">Services Offered</a>
+      <a href="testimonials.html" class="text-blue-700 hover:underline">Customer Testimonials</a>
+      <a href="pricing.html" class="text-blue-700 hover:underline">Pricing</a>
+      <a href="faq.html" class="text-blue-700 hover:underline">FAQ</a>
+    </nav>
+  </header>
+  <main class="pt-24 p-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center text-blue-800 my-10">Welcome to Integral Data Systems</h2>
+    <p class="text-center">Helping businesses of any size automate, visualize, and leverage their data. Make faster decisions without costly software or hiring a full-time analyst.</p>
+  </main>
  
-  <body class="p-6 max-w-4xl mx-auto space-y-12" >
-    <header class="text-center">
-      <img src="logo.png" alt="Integral Data Systems Logo" class="mx-auto mb-4 w-32" />
-      <h1 class="text-4xl font-bold mb-2">Integral Data Systems</h1>
-      <p class="text-lg text-gray-700">Helping small businesses automate, visualize, and leverage their data.</p>
-      
-    </header>
- 
+ 	<br>
     <section1>
-      <h2 class="text-3xl font-semibold text-center text-blue-800 mb-8">Services</h2>
+      <h2 class="text-5xl font-semibold text-center text-blue-800 mb-8">Services</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div class="flip-card">
           <div class="flip-card-inner">
@@ -103,7 +103,8 @@
         </div>
       </div>
     </section1>
-    
+    <br>
+    <br>
     <section2>
       <h2 class="text-2xl font-semibold mb-4">📁 Portfolio Projects</h2>
       <div class="space-y-6">
