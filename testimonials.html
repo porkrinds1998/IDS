@@ -10,45 +10,40 @@
       const menu = document.getElementById('menu');
       menu.classList.toggle('hidden');
     }
-    let currentSlide = 0;
-  let interval;
-  let slides;
+    let current = 0,
+        slides,
+        total,
+        interval;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('hidden', i !== index);
-    });
-    currentSlide = index;
-  }
+    function update() {
+      slides.style.transform = `translateX(-${current * 100}%)`;
+    }
 
-  function rotateSlides() {
-    showSlide((currentSlide + 1) % slides.length);
-  }
+    function nextSlide() {
+      clearInterval(interval);
+      current = (current + 1) % total;
+      update();
+    }
 
-  function startAutoRotate() {
-    interval = setInterval(rotateSlides, 8000);
-  }
+    function prevSlide() {
+      clearInterval(interval);
+      current = (current - 1 + total) % total;
+      update();
+    }
 
-  function stopAutoRotate() {
-    clearInterval(interval);
-  }
+    window.onload = () => {
+      // Now the DOM is ready:
+      slides = document.getElementById('slides');
+      total  = slides.children.length;
 
-  function nextSlide() {
-    stopAutoRotate();
-    showSlide((currentSlide + 1) % slides.length);
-  }
-
-  function prevSlide() {
-    stopAutoRotate();
-    showSlide((currentSlide + slides.length - 1) % slides.length);
-  }
-
-  window.onload = () => {
-    slides = document.querySelectorAll('.slide');
-    showSlide(0);
-    startAutoRotate();
-  }
-  </script>
+      // Kick things off
+      update();
+      interval = setInterval(() => {
+        current = (current + 1) % total;
+        update();
+      }, 4000);
+    };
+</script>
 </head>
 <body class="pt-24 p-6 bg-gray-100 text-gray-800 p-6 pt-28">
   <header class="fixed top-0 left-0 w-full bg-white shadow p-4 flex justify-between items-center z-50">
@@ -70,26 +65,35 @@
     </nav>
   </header>
   <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">Customer Testimonials</h1>
-  <div class="max-w-3xl mx-auto relative h-80 mb-4">
-    <!-- Slide #1 -->
-    <div class="slide absolute inset-0 flex flex-col items-center justify-center p-6 hidden">
-      <img src="logo.png" alt="Jane Doe" class="w-24 h-24 rounded-full mb-4 object-cover"/>
-      <p class="italic text-xl text-center">“Recieve free or discounted services for being one of the first customers to leave public feedback!”</p>
+  <div class="max-w-3xl mx-auto relative overflow-hidden h-80 mb-4">
+  <!-- Slides wrapper -->
+  <div id="slides" class="flex transition-transform duration-700 ease-in-out">
+    <!-- Each slide = 100% width -->
+    <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
+      <img src="logo.png" class="w-24 h-24 rounded-full mb-4 object-cover" alt="Jane"/>
+      <p class="italic text-xl text-center">
+        “Recieve free or discounted services for being one of the first customers to leave public feedback!”
+      </p>
     </div>
-    <!-- Slide #2 -->
-    <div class="slide absolute inset-0 flex flex-col items-center justify-center p-6 hidden">
-      <img src="logo2.png" alt="John Smith" class="w-24 h-24 rounded-full mb-4 object-cover"/>
-      <p class="italic text-xl text-center">“Being an early reviewer has its perks!”</p>
+    <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
+      <img src="logo2.png" class="w-24 h-24 rounded-full mb-4 object-cover" alt="John"/>
+      <p class="italic text-xl text-center">
+        “Being an early reviewer has its perks!”
+      </p>
     </div>
-    <!-- Slide #3 -->
-    <div class="slide absolute inset-0 flex flex-col items-center justify-center p-6 hidden">
-      <img src="logo3.png" alt="Acme Corp CEO" class="w-24 h-24 rounded-full mb-4 object-cover"/>
-      <p class="italic text-xl text-center">“Reviews and referrals help us both!”</p>
+    <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
+      <img src="logo3.png" class="w-24 h-24 rounded-full mb-4 object-cover" alt="CEO"/>
+      <p class="italic text-xl text-center">
+        “Reviews and referrals help us both!”
+      </p>
     </div>
-    <button onclick="prevSlide()"
+  </div>
+
+  <!-- Prev/Next arrows -->
+  <button onclick="prevSlide()"
           class="absolute top-1/2 left-4 transform -translate-y-1/2 z-10
-                 bg-white bg-opacity-75 rounded-full p-2
-                 text-gray-400 hover:text-gray-600 focus:outline-none">
+                 bg-white bg-opacity-75 rounded-full p-2 text-gray-400 hover:text-gray-600">
+    <!-- chevron left SVG -->
     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
          viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -97,19 +101,17 @@
     </svg>
   </button>
 
-  <!-- Next arrow -->
   <button onclick="nextSlide()"
           class="absolute top-1/2 right-4 transform -translate-y-1/2 z-10
-                 bg-white bg-opacity-75 rounded-full p-2
-                 text-gray-400 hover:text-gray-600 focus:outline-none">
+                 bg-white bg-opacity-75 rounded-full p-2 text-gray-400 hover:text-gray-600">
+    <!-- chevron right SVG -->
     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
          viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M9 5l7 7-7 7" />
     </svg>
   </button>
-    
-  </div>
+</div>
 
   <footer class="text-center mt-12">
     <h2 class="text-2xl font-semibold">📞 Let's Talk</h2>
