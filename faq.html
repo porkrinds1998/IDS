@@ -1,22 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ - IDS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer>
+    function toggleAnswer(id) {
+      const answer = document.getElementById(id);
+      answer.classList.toggle('hidden');
+    }
+  </script>
 </head>
-<body class="bg-gray-100 text-gray-800 p-6">
+<body class="bg-gray-100 text-gray-800 p-6 pt-28">
   <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">Frequently Asked Questions</h1>
   <div class="max-w-3xl mx-auto space-y-4">
     <div>
-      <h2 class="text-xl font-semibold">What tools do you use?</h2>
-      <p>We specialize in Altair Monarch, Python, Excel, and Power BI.</p>
+      <button onclick="toggleAnswer('a1')" class="flex justify-between w-full text-left font-semibold text-lg">
+        What tools do you use? <span>▼</span>
+      </button>
+      <p id="a1" class="hidden mt-2">We specialize in Altair Monarch, Python, Excel, and Power BI.</p>
     </div>
     <div>
-      <h2 class="text-xl font-semibold">Do you offer ongoing support?</h2>
-      <p>Yes. We provide monthly support packages starting at $250/month.</p>
+      <button onclick="toggleAnswer('a2')" class="flex justify-between w-full text-left font-semibold text-lg">
+        Do you offer ongoing support? <span>▼</span>
+      </button>
+      <p id="a2" class="hidden mt-2">Yes. We provide monthly support packages starting at $250/month.</p>
     </div>
   </div>
 </body>
