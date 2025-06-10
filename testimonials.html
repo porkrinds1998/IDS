@@ -11,22 +11,43 @@
       menu.classList.toggle('hidden');
     }
     let currentSlide = 0;
-    function rotateSlides() {
-      const slides = document.querySelectorAll('.slide');
-      slides.forEach((el, i) => {
-        el.classList.toggle('hidden', i !== currentSlide);
-      });
-      currentSlide = (currentSlide + 1) % slides.length;
-    }
-    window.onload = () => {
-      rotateSlides();
-      setInterval(rotateSlides, 4000);
-    };
-    let currentSlide = 0, interval;
-    function showSlide(i){const s=document.querySelectorAll('.slide');s.forEach((e,j)=>e.classList.toggle('hidden',j!==i));currentSlide=i;}
-    function rotateSlides(){const s=document.querySelectorAll('.slide');showSlide((currentSlide+1)%s.length);}
-    function start(){interval=setInterval(rotateSlides,4000);}
-    function stop(){clearInterval(interval);}
+  let interval;
+  let slides;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('hidden', i !== index);
+    });
+    currentSlide = index;
+  }
+
+  function rotateSlides() {
+    showSlide((currentSlide + 1) % slides.length);
+  }
+
+  function startAutoRotate() {
+    interval = setInterval(rotateSlides, 4000);
+  }
+
+  function stopAutoRotate() {
+    clearInterval(interval);
+  }
+
+  function nextSlide() {
+    stopAutoRotate();
+    showSlide((currentSlide + 1) % slides.length);
+  }
+
+  function prevSlide() {
+    stopAutoRotate();
+    showSlide((currentSlide + slides.length - 1) % slides.length);
+  }
+
+  window.onload = () => {
+    slides = document.querySelectorAll('.slide');
+    showSlide(0);
+    startAutoRotate();
+  };
 window.onload=()=>{showSlide(0);start();};
   </script>
 </head>
