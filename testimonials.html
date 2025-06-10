@@ -26,7 +26,7 @@
   }
 
   function startAutoRotate() {
-    interval = setInterval(rotateSlides, 4000);
+    interval = setInterval(rotateSlides, 8000);
   }
 
   function stopAutoRotate() {
@@ -70,20 +70,52 @@
     </nav>
   </header>
   <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">Customer Testimonials</h1>
-    <div class="max-w-3xl mx-auto relative h-60 mb-4">
-      <div class="slide absolute inset-0 text-center p-6 hidden"><p class="italic text-xl">“IDS automated our invoice processing and saved us over $6,000 a year.”</p></div>
-      <div class="slide absolute inset-0 text-center p-6 hidden"><p class="italic text-xl">“The dashboards IDS built changed how we track performance.”</p></div>
-      <div class="slide absolute inset-0 text-center p-6 hidden"><p class="italic text-xl">“Incredible accuracy and time savings from their data pipelines.”</p></div>
+  <div class="max-w-3xl mx-auto relative h-80 mb-4">
+    <!-- Slide #1 -->
+    <div class="slide absolute inset-0 flex flex-col items-center justify-center p-6 hidden">
+      <img src="avatar1.jpg" alt="Jane Doe" class="w-24 h-24 rounded-full mb-4 object-cover"/>
+      <p class="italic text-xl text-center">“IDS automated our invoice processing and saved us over $6,000 a year.”</p>
     </div>
-    <div class="flex justify-center space-x-4">
-      <button onclick="stop();showSlide((currentSlide+2)%3)" class="bg-blue-600 text-white px-4 py-2 rounded">Previous</button>
-      <button onclick="stop();showSlide((currentSlide+1)%3)" class="bg-blue-600 text-white px-4 py-2 rounded">Next</button>
+    <!-- Slide #2 -->
+    <div class="slide absolute inset-0 flex flex-col items-center justify-center p-6 hidden">
+      <img src="avatar2.jpg" alt="John Smith" class="w-24 h-24 rounded-full mb-4 object-cover"/>
+      <p class="italic text-xl text-center">“The dashboards IDS built changed how we track performance.”</p>
     </div>
+    <!-- Slide #3 -->
+    <div class="slide absolute inset-0 flex flex-col items-center justify-center p-6 hidden">
+      <img src="avatar3.jpg" alt="Acme Corp CEO" class="w-24 h-24 rounded-full mb-4 object-cover"/>
+      <p class="italic text-xl text-center">“Incredible accuracy and time savings from their data pipelines.”</p>
+    </div>
+    <button onclick="prevSlide()"
+          class="absolute top-1/2 left-4 transform -translate-y-1/2 z-10
+                 bg-white bg-opacity-75 rounded-full p-2
+                 text-gray-400 hover:text-gray-600 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+         viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Next arrow -->
+  <button onclick="nextSlide()"
+          class="absolute top-1/2 right-4 transform -translate-y-1/2 z-10
+                 bg-white bg-opacity-75 rounded-full p-2
+                 text-gray-400 hover:text-gray-600 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+         viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+    
+  </div>
+
   <footer class="text-center mt-12">
     <h2 class="text-2xl font-semibold">📞 Let's Talk</h2>
     <p>Book a free 30-minute audit of your data process. No strings attached.</p>
     <p>Email: <a href="mailto:your.email@example.com" class="text-blue-600">your.email@example.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" class="text-blue-600">linkedin.com/in/yourprofile</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" class="text-blue-600">linkedin.com/in/yourprofile</a></p><br>
     <a href="contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">Contact Us</a><br><br><br>
   </footer>  
 </body>
