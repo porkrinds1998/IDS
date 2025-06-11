@@ -15,7 +15,7 @@
     }
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800 pt-24 p-6">
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
   <!-- Header / Nav (unchanged) -->
   <header class="fixed inset-x-0 top-0 bg-white shadow z-50">
     <div class="container mx-auto flex items-center justify-between px-4 py-4">
@@ -40,19 +40,23 @@
   </header>
 
   <!-- Main content -->
-  <main class="pt-6 max-w-6xl mx-auto space-y-12">
+  <main class="flex-grow pt-28 px-4 pb-6 max-w-6xl mx-auto">
     <h1 class="text-3xl font-bold text-center text-blue-800">Services Offered</h1>
-
+	<br>
     <!-- Grid of Services -->
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        
-        <!-- Service Card 1 -->
-        <div class="bg-white rounded-lg shadow p-6 flex flex-col h-full">
-          <div class="flex-shrink-0">
-            <img src="Images/docExtrac.png" alt="PDF & Document Extraction"
-                 class="w-12 h-12 md:w-16 md:h-16 mb-4"/>
-          </div>
+<div class="max-w-6xl mx-auto px-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+    
+    <!-- Card 1: image on left -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="flex flex-col md:flex-row h-full">
+        <!-- Image 1/3 -->
+        <div class="w-full md:w-1/3 h-48 md:h-auto">
+          <img src="Images/docExtrac.png" alt="PDF & Document Extraction"
+               class="w-full h-full object-cover" />
+        </div>
+        <!-- Text 2/3 -->
+        <div class="w-full md:w-2/3 p-6 flex flex-col">
           <h2 class="text-xl font-semibold mb-2">PDF &amp; Document Extraction</h2>
           <p class="text-gray-600 flex-grow">
             Automatically pull tables and text from any PDF—financials, invoices, reports—then clean, normalize, and export ready for analysis.
@@ -61,13 +65,17 @@
             “Stop copy-pasting! Get reliable data with a single click.”
           </p>
         </div>
-    
-        <!-- Service Card 2 -->
-        <div class="bg-white rounded-lg shadow p-6 flex flex-col h-full">
-          <div class="flex-shrink-0">
-            <img src="Images/dataFlow.png" alt="Monarch Workflows"
-                 class="w-12 h-12 md:w-16 md:h-16 mb-4"/>
-          </div>
+      </div>
+    </div>
+
+    <!-- Card 2: image on right -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="flex flex-col md:flex-row-reverse h-full">
+        <div class="w-full md:w-1/3 h-48 md:h-auto">
+          <img src="Images/dataFlow.png" alt="Monarch Workflows"
+               class="w-full h-full object-cover" />
+        </div>
+        <div class="w-full md:w-2/3 p-6 flex flex-col">
           <h2 class="text-xl font-semibold mb-2">Altair Monarch / MDPS Workflows</h2>
           <p class="text-gray-600 flex-grow">
             Design repeatable, template-driven data prep pipelines in Monarch that trap, parse, transform, and load multi-page reports in seconds.
@@ -76,13 +84,17 @@
             “Perfect for monthly closing and ad-hoc deep dives alike.”
           </p>
         </div>
-    
-        <!-- Service Card 3 -->
-        <div class="bg-white rounded-lg shadow p-6 flex flex-col h-full">
-          <div class="flex-shrink-0 self-end">
-            <img src="Images/dashboard.png" alt="Automated Dashboards"
-                 class="w-12 h-12 md:w-16 md:h-16 mb-4"/>
-          </div>
+      </div>
+    </div>
+
+    <!-- Card 3: image on left -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="flex flex-col md:flex-row h-full">
+        <div class="w-full md:w-1/3 h-48 md:h-auto">
+          <img src="Images/dashboard.png" alt="Automated Dashboards"
+               class="w-full h-full object-cover" />
+        </div>
+        <div class="w-full md:w-2/3 p-6 flex flex-col">
           <h2 class="text-xl font-semibold mb-2">Automated Reporting &amp; Dashboards</h2>
           <p class="text-gray-600 flex-grow">
             Build Power BI or Excel dashboards wired to live data feeds—no manual refresh needed. Alerts, drill-downs, KPI visuals, you name it.
@@ -91,13 +103,17 @@
             “See your metrics move in real time—no more stale spreadsheets.”
           </p>
         </div>
-    
-        <!-- Service Card 4 -->
-        <div class="bg-white rounded-lg shadow p-6 flex flex-col h-full">
-          <div class="flex-shrink-0 self-end">
-            <img src="Images/python.png" alt="Web Scraping & APIs"
-                 class="w-12 h-12 md:w-16 md:h-16 mb-4"/>
-          </div>
+      </div>
+    </div>
+
+    <!-- Card 4: image on right -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="flex flex-col md:flex-row-reverse h-full">
+        <div class="w-full md:w-1/3 h-48 md:h-auto">
+          <img src="Images/python.png" alt="Web Scraping & APIs"
+               class="w-full h-full object-cover" />
+        </div>
+        <div class="w-full md:w-2/3 p-6 flex flex-col">
           <h2 class="text-xl font-semibold mb-2">Web Scraping &amp; APIs</h2>
           <p class="text-gray-600 flex-grow">
             Custom Python scripts to scrape e-commerce, news, or financial sites, or integrate with REST APIs; scheduled via cron or Windows Task Scheduler.
@@ -106,13 +122,17 @@
             “Power your dashboards with external data sources effortlessly.”
           </p>
         </div>
-    
-        <!-- Service Card 5 -->
-        <div class="bg-white rounded-lg shadow p-6 flex flex-col h-full">
-          <div class="flex-shrink-0">
-            <img src="Images/machineLearn.png" alt="AI & ML"
-                 class="w-12 h-12 md:w-16 md:h-16 mb-4"/>
-          </div>
+      </div>
+    </div>
+
+    <!-- Card 5: image on left -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="flex flex-col md:flex-row h-full">
+        <div class="w-full md:w-1/3 h-48 md:h-auto">
+          <img src="Images/machineLearn.png" alt="AI & ML"
+               class="w-full h-full object-cover" />
+        </div>
+        <div class="w-full md:w-2/3 p-6 flex flex-col">
           <h2 class="text-xl font-semibold mb-2">AI &amp; ML</h2>
           <p class="text-gray-600 flex-grow">
             Data-driven models to power machine learning; AI to guide your business decisions.
@@ -121,42 +141,49 @@
             “Big or small, discrete or continuous—supervised or unsupervised, we've got you covered.”
           </p>
         </div>
-    
-        <!-- Service Card 6 -->
-        <div class="bg-white rounded-lg shadow p-6 flex flex-col h-full">
+      </div>
+    </div>
+
+    <!-- Card 6: image on right -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="flex flex-col md:flex-row-reverse h-full">
+        <div class="w-full md:w-1/3 h-48 md:h-auto">
+          <img src="Images/parse.png" alt="Data Parsing"
+               class="w-full h-full object-cover" />
+        </div>
+        <div class="w-full md:w-2/3 p-6 flex flex-col">
           <h2 class="text-xl font-semibold mb-2">Data Parsing</h2>
           <p class="text-gray-600 flex-grow">
             Turn raw, unstructured, or unintelligible data sources into clear, concise summaries.
           </p>
-          <div class="flex-shrink-0 self-start mt-4">
-            <img src="Images/parse.png" alt="Data Parsing"
-                 class="w-12 h-12 md:w-16 md:h-16"/>
-          </div>
           <p class="mt-4 text-sm text-gray-500 italic">
             “Filter out the noise and confusion!”
           </p>
         </div>
-    
       </div>
     </div>
+
+  </div>
+</div>
+
 
 
     
   </main>
 
   <!-- Footer (unchanged) -->
-  <br><br><br>
-  <footer class="bg-white border-t py-6">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+  <footer class="bg-white border-t py-6 mt-auto">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
       <p class="text-gray-600">&copy; 2025 Integral Data Systems</p>
-      <div class="mt-4 md:mt-0">
-        <a href="contact.html" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">Contact Us</a>
-      </div>
-      <div class="mt-4 md:mt-0">
-        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
-          <span class="text-white font-bold">in</span>
-        </a>
-      </div>
+      <a href="contact.html"
+         class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
+        Contact Us
+      </a>
+      <a href="https://www.linkedin.com/in/yourprofile"
+         target="_blank" rel="noopener noreferrer"
+         class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
+        <span class="text-white font-bold">in</span>
+      </a>
     </div>
   </footer>
 
