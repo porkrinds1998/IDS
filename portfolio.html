@@ -51,21 +51,63 @@
   </nav>
 </header>
 
-<main class="flex-grow pt-28 px-4 pb-6 max-w-6xl mx-auto">
-<h1 class="text-3xl font-bold text-center text-blue-800 mb-8">Portfolio Projects</h1>
-<div class="flex flex-col md:flex-row items-center gap-6">
-  <div class="w-full md:w-1/2"><iframe width="100%" height="720" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Demo Video" frameborder="0" allowfullscreen></iframe></div>
-  <div class="w-full md:w-1/2"><h2 class="text-xl font-semibold text-blue-800 mb-2">Project 1: Automation Demo</h2><p>This video showcases how we automated a multi-vendor PDF workflow with Altair Monarch and streamlined reporting through Power BI.</p></div>
-</div>
-<div class="flex flex-col md:flex-row-reverse items-center gap-6">
-  <div class="w-full md:w-1/2"><img src="logo.png" alt="Dashboard Screenshot" class="rounded shadow" /></div>
-  <div class="w-full md:w-1/2"><h2 class="text-xl font-semibold text-blue-800 mb-2">Project 2: Dashboard Implementation</h2><p>This dashboard summarizes customer satisfaction KPIs in real time with live web scraping updates and a 24-hour refresh cycle.</p></div>
-</div>
-<div class="flex flex-col md:flex-row items-center gap-6">
-  <div class="w-full md:w-1/2"><img src="logo.png" alt="Scraping Project" class="rounded shadow" /></div>
-  <div class="w-full md:w-1/2"><h2 class="text-xl font-semibold text-blue-800 mb-2">Project 3: Competitor Price Tracker</h2><p>Built a Python-based price tracking script to scrape competitor pricing data and feed it into an Excel dashboard for weekly insights.</p></div>
-</div>
+<main class="mt-24 px-4 pb-16 max-w-6xl mx-auto space-y-16">
+  <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800">Portfolio Projects</h1>
 
+  <!-- Project 1: Video on left, text on right -->
+  <section class="flex flex-col md:flex-row items-center gap-8">
+    <!-- Video embed -->
+    <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
+      <iframe class="w-full h-64 sm:h-80 md:h-64 lg:h-80" src="https://www.youtube.com/embed/VIDEO_ID" 
+              title="Automation Demo" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <!-- Text content -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center">
+      <h2 class="text-2xl font-semibold mb-2">Project 1: Automation Demo</h2>
+      <p class="text-gray-600 mb-4">
+        This video showcases how we automated a multi-vendor PDF workflow with Altair Monarch and streamlined reporting through Power BI.
+      </p>
+      <a href="portfolio.html#project1" class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        View Case Study
+      </a>
+    </div>
+  </section>
+
+  <!-- Project 2: Text on left, image on right -->
+  <section class="flex flex-col md:flex-row-reverse items-center gap-8">
+    <!-- Image -->
+    <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
+      <img src="Images/dashboard.png" alt="Dashboard Implementation" class="w-full h-64 sm:h-80 md:h-64 lg:h-80 object-cover" />
+    </div>
+    <!-- Text content -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center">
+      <h2 class="text-2xl font-semibold mb-2">Project 2: Dashboard Implementation</h2>
+      <p class="text-gray-600 mb-4">
+        This dashboard summarizes customer satisfaction KPIs in real time with live web scraping updates and a 24-hour refresh cycle.
+      </p>
+      <a href="portfolio.html#project2" class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        View Case Study
+      </a>
+    </div>
+  </section>
+
+  <!-- Project 3: Image on left, text on right -->
+  <section class="flex flex-col md:flex-row items-center gap-8">
+    <!-- Image -->
+    <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
+      <img src="Images/priceTracker.png" alt="Competitor Price Tracker" class="w-full h-64 sm:h-80 md:h-64 lg:h-80 object-cover" />
+    </div>
+    <!-- Text content -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center">
+      <h2 class="text-2xl font-semibold mb-2">Project 3: Competitor Price Tracker</h2>
+      <p class="text-gray-600 mb-4">
+        Built a Python-based price tracking script to scrape competitor pricing data and feed it into an Excel dashboard for weekly insights.
+      </p>
+      <a href="portfolio.html#project3" class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        View Case Study
+      </a>
+    </div>
+  </section>
 </main>
   <footer class="bg-white border-t py-6 mt-auto">
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
