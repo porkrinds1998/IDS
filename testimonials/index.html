@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Testimonials - IDS</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <script defer>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('hidden');
+    }
+
+    // Carousel logic
+    let current = 0, slides, total, interval;
+    function update() {
+      slides.style.transform = `translateX(-${current * 100}%)`;
+    }
+    function nextSlide() {
+      clearInterval(interval);
+      current = (current + 1) % total;
+      update();
+    }
+    function prevSlide() {
+      clearInterval(interval);
+      current = (current - 1 + total) % total;
+      update();
+    }
+    window.onload = () => {
+      slides = document.getElementById('slides');
+      total = slides.children.length;
+      update();
+      interval = setInterval(() => { current = (current + 1) % total; update(); }, 4000);
+    };
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed inset-x-0 top-0 bg-white shadow z-50">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
+      <a href="index.html" class="flex items-center space-x-3">
+        <img src="logo.png" alt="Logo" class="h-12 w-auto">
+        <span class="text-2xl font-bold text-blue-900">Integral Data Systems</span>
+      </a>
+      <button class="md:hidden text-blue-900" onclick="toggleMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <nav id="menu" class="hidden md:flex space-x-6">
+        <a href="services.html"     class="text-blue-700 hover:underline">Services</a>
+        <a href="testimonials.html" class="text-blue-700 underline">Testimonials</a>
+        <a href="portfolio.html"    class="text-blue-700 hover:underline">Portfolio</a>
+        <a href="pricing.html"      class="text-blue-700 hover:underline">Pricing</a>
+        <a href="faq.html"          class="text-blue-700 hover:underline">FAQ</a>
+        <a href="contact.html"      class="text-blue-700 hover:underline">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-grow pt-28 px-4 pb-8 max-w-3xl mx-auto">
+    <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-6">
+      Customer Testimonials
+    </h1>
+
+    <div class="relative overflow-hidden">
+      <!-- Slides container -->
+      <div id="slides" class="flex transition-transform duration-700 ease-in-out">
+        <!-- Slide 1 -->
+        <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
+          <img src="logo.png" alt="Client 1"
+               class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          <p class="italic text-base sm:text-lg text-center">
+            “IDS automated our invoice processing and saved us over $6,000 a year.”
+          </p>
+        </div>
+        <!-- Slide 2 -->
+        <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
+          <img src="logo2.png" alt="Client 2"
+               class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          <p class="italic text-base sm:text-lg text-center">
+            “The dashboards IDS built changed how we track performance.”
+          </p>
+        </div>
+        <!-- Slide 3 -->
+        <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
+          <img src="logo_old.png" alt="Client 3"
+               class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          <p class="italic text-base sm:text-lg text-center">
+            “Incredible accuracy and time savings from their data pipelines.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Prev arrow -->
+      <button onclick="prevSlide()"
+              class="absolute left-2 top-1/2 transform -translate-y-1/2 z-10
+                     bg-white bg-opacity-75 rounded-full p-2
+                     text-gray-400 hover:text-gray-600 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Next arrow -->
+      <button onclick="nextSlide()"
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 z-10
+                     bg-white bg-opacity-75 rounded-full p-2
+                     text-gray-400 hover:text-gray-600 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-6 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+      <!-- Left: copyright -->
+      <p class="text-gray-600">&copy; 2025 Integral Data Systems</p>
+      <!-- Center: Contact Us button -->
+      <a href="contact.html" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
+        Contact Us
+      </a>
+      <!-- Right: LinkedIn icon -->
+      <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer"
+         class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
+        <span class="text-white font-bold">in</span>
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>

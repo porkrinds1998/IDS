@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ - IDS</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+
+  <style>
+    /* smooth slide down/up on answers */
+    .answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease-in-out;
+    }
+  </style>
+
+  <script defer>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('hidden');
+    }
+    function toggleAnswer(id) {
+      document.querySelectorAll('.answer').forEach(ans => {
+        if (ans.id === id) {
+          // if closed, open to its scrollHeight; if open, close it
+          if (ans.style.maxHeight && ans.style.maxHeight !== '0px') {
+            ans.style.maxHeight = '0px';
+          } else {
+            ans.style.maxHeight = ans.scrollHeight + 'px';
+          }
+        } else {
+          // close any other open answer
+          ans.style.maxHeight = '0px';
+        }
+      });
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
+<header class="fixed inset-x-0 top-0 bg-white shadow z-50">
+  <div class="container mx-auto flex items-center justify-between px-4 py-4">
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="logo.png" alt="Integral Data Systems Logo" class="h-12 w-auto">
+      <span class="text-2xl font-bold text-blue-900">Integral Data Systems</span>
+    </a>
+
+    <!-- Hamburger -->
+    <button class="md:hidden text-blue-900" onclick="toggleMenu()">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex space-x-6">
+      <a href="services.html" class="text-blue-700 hover:underline">Services</a>
+      <a href="testimonials.html" class="text-blue-700 hover:underline">Testimonials</a>
+      <a href="portfolio.html" class="text-blue-700 hover:underline">Portfolio</a>
+      <a href="pricing.html" class="text-blue-700 hover:underline">Pricing</a>
+      <a href="faq.html" class="text-blue-700 hover:underline">FAQ</a>
+      <a href="contact.html" class="text-blue-700 hover:underline">Contact</a>
+    </nav>
+  </div>
+
+  <!-- Mobile drop-down nav -->
+  <nav id="menu"
+       class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-md">
+    <div class="flex flex-col px-4 py-2 space-y-2">
+      <a href="services.html"     class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Services</a>
+      <a href="testimonials.html" class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Testimonials</a>
+      <a href="portfolio.html"    class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Portfolio</a>
+      <a href="pricing.html"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Pricing</a>
+      <a href="faq.html"          class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">FAQ</a>
+      <a href="contact.html"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Contact</a>
+    </div>
+  </nav>
+</header>
+
+  <main class="flex-grow pt-28 px-4 pb-6 max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold text-center text-blue-800 mt-8">Frequently Asked Questions</h1>
+    <div class="space-y-4">
+      <!-- Q1 -->
+      <div>
+        <button onclick="toggleAnswer('a1')" class="w-full flex justify-between items-center font-semibold text-lg">
+          What services do you offer? <span>▼</span>
+        </button>
+        <div id="a1" class="answer">
+          <p class="mt-2">
+            We provide PDF extraction, Monarch/MDPS workflows, dashboard development, web scraping, and ongoing support packages. Learn more <a href="services.html" class="text-blue-600">here</a>.
+          </p>
+        </div>
+      </div>
+      <!-- Q2 -->
+      <div>
+        <button onclick="toggleAnswer('a2')" class="w-full flex justify-between items-center font-semibold text-lg">
+          How long does setup take? <span>▼</span>
+        </button>
+        <div id="a2" class="answer">
+          <p class="mt-2">
+            Initial setup and audit typically take 2–3 business days, depending on data complexity.
+          </p>
+        </div>
+      </div>
+      <!-- Q3 -->
+      <div>
+        <button onclick="toggleAnswer('a3')" class="w-full flex justify-between items-center font-semibold text-lg">
+          What tools do you use? <span>▼</span>
+        </button>
+        <div id="a3" class="answer">
+          <p class="mt-2">
+            We specialize in Altair Monarch, Python, Excel, Power BI, and custom web scraping scripts.
+          </p>
+        </div>
+      </div>
+      <!-- Q4 -->
+      <div>
+        <button onclick="toggleAnswer('a4')" class="w-full flex justify-between items-center font-semibold text-lg">
+          Can you integrate with our existing systems? <span>▼</span>
+        </button>
+        <div id="a4" class="answer">
+          <p class="mt-2">
+            Yes—whether it’s SQL databases, REST APIs, or cloud services, we can build connectors and automated pipelines.
+          </p>
+        </div>
+      </div>
+      <!-- Q5 -->
+      <div>
+        <button onclick="toggleAnswer('a5')" class="w-full flex justify-between items-center font-semibold text-lg">
+          Do you offer training? <span>▼</span>
+        </button>
+        <div id="a5" class="answer">
+          <p class="mt-2">
+            We provide personalized training sessions on your new dashboards and workflows to ensure your team is self-sufficient.
+          </p>
+        </div>
+      </div>
+      <!-- Q6 -->
+      <div>
+        <button onclick="toggleAnswer('a6')" class="w-full flex justify-between items-center font-semibold text-lg">
+          How is pricing structured? <span>▼</span>
+        </button>
+        <div id="a6" class="answer">
+          <p class="mt-2">
+            We have hourly rates, one-time project fees, and monthly maintenance plans—flexible to fit any budget. These <a href="pricing.html" class="text-blue-600">charts</a> contain more details.
+          </p>
+        </div>
+      </div>
+      <!-- Q7 -->
+      <div>
+        <button onclick="toggleAnswer('a7')" class="w-full flex justify-between items-center font-semibold text-lg">
+          What’s your turnaround time for support? <span>▼</span>
+        </button>
+        <div id="a7" class="answer">
+          <p class="mt-2">
+            Standard support requests are handled within 24 hours; urgent issues can be escalated for same-day response.
+          </p>
+        </div>
+      </div>
+      <!-- Q8 -->
+      <div>
+        <button onclick="toggleAnswer('a8')" class="w-full flex justify-between items-center font-semibold text-lg">
+          Do you offer sample work? <span>▼</span>
+        </button>
+        <div id="a8" class="answer">
+          <p class="mt-2">
+            Absolutely! Feel free to review our <a href="portfolio.html" class="text-blue-600">Project Portfolio</a> or we can provide a free data sample to demonstrate our capabilities.
+          </p>
+        </div>
+      </div>
+      <!-- Q9 -->
+      <div>
+        <button onclick="toggleAnswer('a9')" class="w-full flex justify-between items-center font-semibold text-lg">
+          How secure is my data? <span>▼</span>
+        </button>
+        <div id="a9" class="answer">
+          <p class="mt-2">
+            We follow best practices for encryption, access control, and data handling—your data never leaves your environment unless you authorize it.
+          </p>
+        </div>
+      </div>
+      <!-- Q10 -->
+      <div>
+        <button onclick="toggleAnswer('a10')" class="w-full flex justify-between items-center font-semibold text-lg">
+          Can you handle large datasets? <span>▼</span>
+        </button>
+        <div id="a10" class="answer">
+          <p class="mt-2">
+            Yes—our workflows scale to process millions of rows, parallelizing tasks where possible for speed.
+          </p>
+        </div>
+      </div>
+      <!-- Q11 -->
+      <div>
+        <button onclick="toggleAnswer('a11')" class="w-full flex justify-between items-center font-semibold text-lg">
+          What industries do you serve? <span>▼</span>
+        </button>
+        <div id="a11" class="answer">
+          <p class="mt-2">
+            We’ve worked with finance, healthcare, manufacturing, retail, and logistics clients, among others. See what out <a href="testimonials.html" class="text-blue-600">customers</a> are saying.
+          </p>
+        </div>
+      </div>
+      <!-- Q12 -->
+      <div>
+        <button onclick="toggleAnswer('a12')" class="w-full flex justify-between items-center font-semibold text-lg">
+          How do I get started? <span>▼</span>
+        </button>
+        <div id="a12" class="answer">
+          <p class="mt-2">
+            Just click “<a href="contact.html" class="text-blue-600">Contact Us</a>” in the footer or email us at <a href="mailto:your.email@example.com" class="text-blue-600">your.email@example.com</a> to schedule your free audit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t py-6 mt-auto">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+      <p class="text-gray-600">&copy; 2025 Integral Data Systems</p>
+      <a href="contact.html"
+         class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
+        Contact Us
+      </a>
+      <a href="https://www.linkedin.com/in/yourprofile"
+         target="_blank" rel="noopener noreferrer"
+         class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
+        <span class="text-white font-bold">in</span>
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
