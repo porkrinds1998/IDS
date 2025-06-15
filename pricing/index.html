@@ -1,58 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing - IDS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Testimonials - IDS</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
   <script defer>
     function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.classList.toggle('hidden');
+      document.getElementById('menu').classList.toggle('hidden');
     }
   </script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
-<header class="fixed inset-x-0 top-0 bg-white shadow z-50">
-  <div class="container mx-auto flex items-center justify-between px-4 py-4">
-    <a href="https://integraldata.info/" class="flex items-center space-x-3">
-      <img src="logo.png" alt="Integral Data Systems Logo" class="h-12 w-auto">
-      <span class="text-2xl font-bold text-blue-900">Integral Data Systems</span>
-    </a>
 
-    <!-- Hamburger -->
-    <button class="md:hidden text-blue-900" onclick="toggleMenu()">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-
-    <!-- Desktop nav -->
-    <nav class="hidden md:flex space-x-6">
-      <a href="https://integraldata.info/services/" class="text-blue-700 hover:underline">Services</a>
-      <a href="https://integraldata.info/testimonials/" class="text-blue-700 hover:underline">Testimonials</a>
-      <a href="https://integraldata.info/portfolio/" class="text-blue-700 hover:underline">Portfolio</a>
-      <a href="https://integraldata.info/pricing/" class="text-blue-700 hover:underline">Pricing</a>
-      <a href="https://integraldata.info/faq/" class="text-blue-700 hover:underline">FAQ</a>
-      <a href="https://integraldata.info/contact/" class="text-blue-700 hover:underline">Contact</a>
-    </nav>
-  </div>
-
-  <!-- Mobile drop-down nav -->
-  <nav id="menu"
-       class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-md">
-    <div class="flex flex-col px-4 py-2 space-y-2">
-      <a href="https://integraldata.info/services/"     class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Services</a>
-      <a href="https://integraldata.info/testimonials/" class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Testimonials</a>
-      <a href="https://integraldata.info/portfolio/"    class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Portfolio</a>
-      <a href="https://integraldata.info/pricing/"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Pricing</a>
-      <a href="https://integraldata.info/faq/"          class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">FAQ</a>
-      <a href="https://integraldata.info/contact/"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Contact</a>
+  <!-- Header -->
+  <header class="fixed inset-x-0 top-0 bg-white shadow z-50">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
+      <a href="https://integraldata.info/" class="flex items-center space-x-3">
+        <img src="logo.png" alt="Logo" class="h-12 w-auto">
+        <span class="text-2xl font-bold text-blue-900">Integral Data Systems</span>
+      </a>
+      <button class="md:hidden text-blue-900" onclick="toggleMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <nav id="menu" class="hidden md:flex space-x-6">
+        <a href="https://integraldata.info/services/"     class="text-blue-700 hover:underline">Services</a>
+        <a href="https://integraldata.info/testimonials/" class="text-blue-700 underline">Testimonials</a>
+        <a href="https://integraldata.info/portfolio/"    class="text-blue-700 hover:underline">Portfolio</a>
+        <a href="https://integraldata.info/pricing/"      class="text-blue-700 hover:underline">Pricing</a>
+        <a href="https://integraldata.info/faq/"          class="text-blue-700 hover:underline">FAQ</a>
+        <a href="https://integraldata.info/contact/"      class="text-blue-700 hover:underline">Contact</a>
+      </nav>
     </div>
-  </nav>
-</header>
+  </header>
+
+  
   <main class="flex-grow pt-28 px-4 pb-6 max-w-6xl mx-auto">
   <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">Pricing</h1>
   <table class="w-full max-w-4xl mx-auto table-auto border border-gray-300">
