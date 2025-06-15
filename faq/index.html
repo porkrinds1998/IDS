@@ -5,11 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FAQ - IDS</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+    /* smooth slide down/up on answers */
+    .answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease-in-out;
+    }
+  </style>
+
   <script defer>
     function toggleMenu() {
-      document.getElementById('menu').classList.toggle('hidden');
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('hidden');
+    }
+    function toggleAnswer(id) {
+      document.querySelectorAll('.answer').forEach(ans => {
+        if (ans.id === id) {
+          // if closed, open to its scrollHeight; if open, close it
+          if (ans.style.maxHeight && ans.style.maxHeight !== '0px') {
+            ans.style.maxHeight = '0px';
+          } else {
+            ans.style.maxHeight = ans.scrollHeight + 'px';
+          }
+        } else {
+          // close any other open answer
+          ans.style.maxHeight = '0px';
+        }
+      });
     }
   </script>
+  
+
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
@@ -39,6 +66,7 @@
 
   <main class="flex-grow pt-28 px-4 pb-6 max-w-6xl mx-auto">
     <h1 class="text-3xl font-bold text-center text-blue-800 mt-8">Frequently Asked Questions</h1>
+    <br><br>
     <div class="space-y-4">
       <!-- Q1 -->
       <div>
