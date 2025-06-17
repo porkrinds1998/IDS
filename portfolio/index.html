@@ -67,17 +67,15 @@
     <!-- Project 1 -->
     <section class="flex flex-col md:flex-row items-center gap-8">
       <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
-        <iframe class="w-full h-64 sm:h-80 lg:h-96" 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                title="Automation Demo" frameborder="0" allowfullscreen>
-        </iframe>
+        <img src="Images/multiPDF.png" alt="Price Tracker"
+             class="w-full h-64 sm:h-80 lg:h-96 object-cover" />
       </div>
       <div class="w-full md:w-1/2 flex flex-col justify-center">
         <h2 class="text-2xl font-semibold mb-2">Project 1: Automation Demo</h2>
         <p class="text-gray-600 mb-4">
           A deep dive into automating multi-vendor PDF workflows and real-time reporting.
         </p>
-        <button onclick="openModal('modal1')"
+        <button onclick="openModal('modal3')"
                 class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
           View Case Study
         </button>
@@ -127,12 +125,25 @@
       <!-- Top-right X -->
       <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
       <h3 class="text-xl font-bold mb-4">Case Study 1: Setup & Solution</h3>
-      <p class="mb-4">Here you can describe the setup in detail, the business challenge, and how we approached it…</p>
+      <p class="mb-4">Our customer is a distributor of classical music media. On the first of each month, a central distribution center
+      receives several PDF reports of the previous month's shipping. Each PDF report contains the customer name, location, and inventory
+      ordered. The inventory includes standard information such as descriptions, quantities, unit costs, and total costs. A regional executive 
+      would like to distill these reports from all customers for the first quarter to identify the most popular composers.</p>
       <!-- Embed Video -->
       <div class="mb-4">
         <iframe class="w-full h-48 sm:h-64" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
       </div>
-      <p class="mb-6">Solution description goes here: tools used, architecture, and key outcomes.</p>
+      <p class="mb-6">Using in-house solutions provided by IDS, we were able to deliver an automated report that showcases a high level summary
+      of the following:</p>
+      <ul>
+        <li>Composers Ranked by Total Sales [$] - Quarter 1</li>
+        <li>Composers Ranked by Total Sales [$] - January</li>
+        <li>Composers Ranked by Total Sales [$] - February</li>
+        <li>Composers Ranked by Total Sales [$] - March</li>
+        <li>Composers Ranked by Total Sales [$] - April</li>
+        <li>Composers Ranked by Total Volume of Sales [Quantity] - Quarter 1</li>
+        <li>Top Composers by Region - Total Sales [$]</li>
+      </ul>
       <!-- Bottom Close -->
       <button onclick="closeModal('modal1')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
         Close
