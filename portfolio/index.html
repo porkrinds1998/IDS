@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio - IDS</title>
+  <title>Portfolio Projects - IDS</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
   <script defer>
+    // Mobile menu toggle
     function toggleMenu() {
       document.getElementById('menu').classList.toggle('hidden');
+    }
+    // Modal open/close
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
     }
   </script>
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
-
   <!-- Header -->
   <header class="fixed inset-x-0 top-0 bg-white shadow z-50">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
@@ -52,81 +59,130 @@
     
   </header>
 
-<main class="mt-24 px-4 pb-16 max-w-6xl mx-auto space-y-16">
-  <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800">Portfolio Projects</h1>
 
-  <!-- Project 1: Video on left, text on right -->
-  <section class="flex flex-col md:flex-row items-center gap-8">
-    <!-- Video embed -->
-    <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
-      <iframe class="w-full h-64 sm:h-80 md:h-64 lg:h-80" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-              title="Automation Demo" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <!-- Text content -->
-    <div class="w-full md:w-1/2 flex flex-col justify-center">
-      <h2 class="text-2xl font-semibold mb-2">Project 1: Automation Demo</h2>
-      <p class="text-gray-600 mb-4">
-        This video showcases how we automated a multi-vendor PDF workflow with Altair Monarch and streamlined reporting through Power BI.
-      </p>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-        View Case Study
-      </a>
-    </div>
-  </section>
+  <!-- Main -->
+  <main class="flex-grow pt-28 px-4 pb-16 max-w-6xl mx-auto space-y-16">
+    <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800">Portfolio Projects</h1>
 
-  <!-- Project 2: Text on left, image on right -->
-  <section class="flex flex-col md:flex-row-reverse items-center gap-8">
-    <!-- Image -->
-    <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
-      <img src="Images/dashboard.png" alt="Dashboard Implementation" class="w-full h-64 sm:h-80 md:h-64 lg:h-80 object-cover" />
-    </div>
-    <!-- Text content -->
-    <div class="w-full md:w-1/2 flex flex-col justify-center">
-      <h2 class="text-2xl font-semibold mb-2">Project 2: Dashboard Implementation</h2>
-      <p class="text-gray-600 mb-4">
-        This dashboard summarizes customer satisfaction KPIs in real time with live web scraping updates and a 24-hour refresh cycle.
-      </p>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-        View Case Study
-      </a>
-    </div>
-  </section>
+    <!-- Project 1 -->
+    <section class="flex flex-col md:flex-row items-center gap-8">
+      <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
+        <iframe class="w-full h-64 sm:h-80 lg:h-96" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="Automation Demo" frameborder="0" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="w-full md:w-1/2 flex flex-col justify-center">
+        <h2 class="text-2xl font-semibold mb-2">Project 1: Automation Demo</h2>
+        <p class="text-gray-600 mb-4">
+          A deep dive into automating multi-vendor PDF workflows and real-time reporting.
+        </p>
+        <button onclick="openModal('modal1')"
+                class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+          View Case Study
+        </button>
+      </div>
+    </section>
 
-  <!-- Project 3: Image on left, text on right -->
-  <section class="flex flex-col md:flex-row items-center gap-8">
-    <!-- Image -->
-    <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
-      <img src="Images/priceTracker.png" alt="Competitor Price Tracker" class="w-full h-64 sm:h-80 md:h-64 lg:h-80 object-cover" />
-    </div>
-    <!-- Text content -->
-    <div class="w-full md:w-1/2 flex flex-col justify-center">
-      <h2 class="text-2xl font-semibold mb-2">Project 3: Competitor Price Tracker</h2>
-      <p class="text-gray-600 mb-4">
-        Built a Python-based price tracking script to scrape competitor pricing data and feed it into an Excel dashboard for weekly insights.
-      </p>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-        View Case Study
-      </a>
-    </div>
-  </section>
-</main>
+    <!-- Project 2 -->
+    <section class="flex flex-col md:flex-row-reverse items-center gap-8">
+      <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
+        <img src="Images/dashboard.png" alt="Dashboard Example"
+             class="w-full h-64 sm:h-80 lg:h-96 object-cover" />
+      </div>
+      <div class="w-full md:w-1/2 flex flex-col justify-center">
+        <h2 class="text-2xl font-semibold mb-2">Project 2: Dashboard Implementation</h2>
+        <p class="text-gray-600 mb-4">
+          Real-time KPI dashboards powered by live web scraping and cloud feeds.
+        </p>
+        <button onclick="openModal('modal2')"
+                class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+          View Case Study
+        </button>
+      </div>
+    </section>
 
-  <!-- Footer (unchanged) -->
-  <footer class="bg-white border-t py-6 mt-auto">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+    <!-- Project 3 -->
+    <section class="flex flex-col md:flex-row items-center gap-8">
+      <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
+        <img src="Images/priceTracker.png" alt="Price Tracker"
+             class="w-full h-64 sm:h-80 lg:h-96 object-cover" />
+      </div>
+      <div class="w-full md:w-1/2 flex flex-col justify-center">
+        <h2 class="text-2xl font-semibold mb-2">Project 3: Competitor Price Tracker</h2>
+        <p class="text-gray-600 mb-4">
+          Python-based scraper feeding weekly Excel dashboards for competitive insights.
+        </p>
+        <button onclick="openModal('modal3')"
+                class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+          View Case Study
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modals -->
+  <div id="modal1" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg overflow-auto max-h-full w-full sm:w-3/4 lg:w-1/2 p-6 relative">
+      <!-- Top-right X -->
+      <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+      <h3 class="text-xl font-bold mb-4">Case Study 1: Setup & Solution</h3>
+      <p class="mb-4">Here you can describe the setup in detail, the business challenge, and how we approached it…</p>
+      <!-- Embed Video -->
+      <div class="mb-4">
+        <iframe class="w-full h-48 sm:h-64" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      </div>
+      <p class="mb-6">Solution description goes here: tools used, architecture, and key outcomes.</p>
+      <!-- Bottom Close -->
+      <button onclick="closeModal('modal1')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <div id="modal2" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg overflow-auto max-h-full w-full sm:w-3/4 lg:w-1/2 p-6 relative">
+      <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+      <h3 class="text-xl font-bold mb-4">Case Study 2: Setup & Solution</h3>
+      <p class="mb-4">Describe your dashboard project setup and requirements here…</p>
+      <div class="mb-4">
+        <iframe class="w-full h-48 sm:h-64" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      </div>
+      <p class="mb-6">Explain how you built and deployed the dashboard, tech stack, etc.</p>
+      <button onclick="closeModal('modal2')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <div id="modal3" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg overflow-auto max-h-full w-full sm:w-3/4 lg:w-1/2 p-6 relative">
+      <button onclick="closeModal('modal3')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+      <h3 class="text-xl font-bold mb-4">Case Study 3: Setup & Solution</h3>
+      <p class="mb-4">Outline the price-tracker architecture, scraping cadence, and data flow…</p>
+      <div class="mb-4">
+        <iframe class="w-full h-48 sm:h-64" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      </div>
+      <p class="mb-6">Discuss how the solution drove insights and ROI.</p>
+      <button onclick="closeModal('modal3')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-6">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
       <p class="text-gray-600">&copy; 2025 Integral Data Systems</p>
-      <a href="https://integraldata.info/contact/"
-         class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
+      <a href="contact.html" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
         Contact Us
       </a>
-      <a href="https://www.linkedin.com/in/yourprofile"
-         target="_blank" rel="noopener noreferrer"
+      <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer"
          class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
         <span class="text-white font-bold">in</span>
       </a>
     </div>
   </footer>
-
 </body>
 </html>
 
