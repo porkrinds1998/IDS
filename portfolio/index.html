@@ -12,10 +12,21 @@
     }
     // Modal open/close
     function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
+      const modal = document.getElementById(id);
+      // restore video src to start playback from the top
+      modal.querySelectorAll('iframe').forEach(iframe => {
+        iframe.src = iframe.dataset.src;
+      });
+      modal.classList.remove('hidden');
     }
+
     function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
+      const modal = document.getElementById(id);
+      // clear src to stop playback
+      modal.querySelectorAll('iframe').forEach(iframe => {
+        iframe.src = '';
+      });
+      modal.classList.add('hidden');
     }
   </script>
 </head>
@@ -134,9 +145,16 @@
       ordered. The inventory includes standard information such as descriptions, quantities, unit costs, and total costs. A regional executive 
       would like to distill these reports from all customers for the first quarter to identify the most popular composers.</p>
       <!-- Embed Video -->
-      <div class="mb-4 h-48 sm:h-64 flex items-center justify-center bg-gray-100 rounded">
-        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-      </div>
+<div class="mb-4 w-full sm:w-3/4 lg:w-1/2 max-w-3xl mx-auto relative" style="padding-top:56.25%;">
+  <iframe
+    class="absolute inset-0 w-full h-full"
+    data-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    title="Case Study Video"
+    src=""
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
       <p class="mb-6">Using in-house solutions provided by IDS, we were able to deliver an automated report that showcases a high level summary
       of the following:</p>
         <ul class="list-disc list-outside pl-6 space-y-1 text-gray-800">
