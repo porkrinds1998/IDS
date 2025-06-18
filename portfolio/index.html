@@ -2,51 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio Projects - IDS</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Projects – IDS</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <script defer>
     // Mobile menu toggle
     function toggleMenu() {
       document.getElementById('menu').classList.toggle('hidden');
     }
-    // Modal open/close
+    // Modal open/close with lazy video load
     function openModal(id) {
       const modal = document.getElementById(id);
-      // restore video src to start playback from the top
-      modal.querySelectorAll('iframe').forEach(iframe => {
-        iframe.src = iframe.dataset.src;
+      modal.querySelectorAll('iframe, video').forEach(el => {
+        if (el.dataset.src && !el.src) el.src = el.dataset.src;
       });
       modal.classList.remove('hidden');
     }
-
     function closeModal(id) {
       const modal = document.getElementById(id);
-      // clear src to stop playback
-      modal.querySelectorAll('iframe').forEach(iframe => {
-        iframe.src = '';
-      });
+      modal.querySelectorAll('iframe, video').forEach(el => el.src = '');
       modal.classList.add('hidden');
     }
   </script>
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
+
   <!-- Header -->
   <header class="fixed inset-x-0 top-0 bg-white shadow z-50">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
       <a href="https://integraldata.info/" class="flex items-center space-x-3">
-        <img src="logo.png" alt="Logo" class="h-12 w-auto">
+        <img src="logo.png" alt="IDS Logo" class="h-12 w-auto" />
         <span class="text-2xl font-bold text-blue-900">Integral Data Systems</span>
       </a>
-      
-    <!-- Desktop-only burger -->
-    <button class="block md:hidden text-blue-900" onclick="toggleMenu()">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-      
+      <button class="block md:hidden text-blue-900" onclick="toggleMenu()" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
       <nav class="hidden md:flex space-x-6">
         <a href="https://integraldata.info/services/"     class="text-blue-700 hover:underline">Services</a>
         <a href="https://integraldata.info/testimonials/" class="text-blue-700 hover:underline">Testimonials</a>
@@ -56,7 +48,6 @@
         <a href="https://integraldata.info/contact/"      class="text-blue-700 hover:underline">Contact</a>
       </nav>
     </div>
-
     <nav id="menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-md">
       <div class="flex flex-col px-4 py-2 space-y-2">
         <a href="https://integraldata.info/services/"     class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Services</a>
@@ -67,9 +58,7 @@
         <a href="https://integraldata.info/contact/"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Contact</a>
       </div>
     </nav>
-    
   </header>
-
 
   <!-- Main -->
   <main class="flex-grow pt-28 px-4 pb-16 max-w-6xl mx-auto space-y-16">
@@ -78,145 +67,57 @@
     <!-- Project 1 -->
     <section class="flex flex-col md:flex-row items-center gap-8">
       <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
-        <img src="Images/multiPDF.png" alt="Price Tracker"
-             class="w-full h-64 sm:h-80 lg:h-96 object-cover" />
+        <img src="Images/multiPDF.png" alt="PDF Workflow Demo" class="w-full h-64 sm:h-80 lg:h-96 object-cover" />
       </div>
       <div class="w-full md:w-1/2 flex flex-col justify-center">
         <h2 class="text-2xl font-semibold mb-2">Project 1: Automation Demo</h2>
-        <p class="text-gray-600 mb-4">
-          A deep dive into automating multi-vendor PDF workflows and real-time reporting.
-        </p>
-        <button onclick="openModal('modal1')"
-                class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-          View Case Study
-        </button>
+        <p class="text-gray-600 mb-4">A deep dive into automating multi-vendor PDF workflows and real-time reporting.</p>
+        <button onclick="openModal('modal1')" class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">View Case Study</button>
       </div>
     </section>
 
-    <!-- Project 2 -->
-    <!--
-    <section class="flex flex-col md:flex-row-reverse items-center gap-8">
-      <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
-        <img src="Images/dashboard.png" alt="Dashboard Example"
-             class="w-full h-64 sm:h-80 lg:h-96 object-cover" />
-      </div>
-      <div class="w-full md:w-1/2 flex flex-col justify-center">
-        <h2 class="text-2xl font-semibold mb-2">Project 2: Dashboard Implementation</h2>
-        <p class="text-gray-600 mb-4">
-          Real-time KPI dashboards powered by live web scraping and cloud feeds.
-        </p>
-        <button onclick="openModal('modal2')"
-                class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-          View Case Study
-        </button>
-      </div>
-    </section>
--->
-    <!-- Project 3 -->
-    <!--
-    <section class="flex flex-col md:flex-row items-center gap-8">
-      <div class="w-full md:w-1/2 bg-gray-100 rounded-lg overflow-hidden">
-        <img src="Images/priceTracker.png" alt="Price Tracker"
-             class="w-full h-64 sm:h-80 lg:h-96 object-cover" />
-      </div>
-      <div class="w-full md:w-1/2 flex flex-col justify-center">
-        <h2 class="text-2xl font-semibold mb-2">Project 3: Competitor Price Tracker</h2>
-        <p class="text-gray-600 mb-4">
-          Python-based scraper feeding weekly Excel dashboards for competitive insights.
-        </p>
-        <button onclick="openModal('modal3')"
-                class="self-start bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-          View Case Study
-        </button>
-      </div>
-    </section>
-    -->
+    <!-- Callout -->
     <h2 class="text-3xl sm:text-4xl font-bold text-center text-blue-800">Come Back For More!</h2>
   </main>
 
-  <!-- Modals -->
+  <!-- Modal 1 -->
   <div id="modal1" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-lg overflow-auto max-h-full w-full sm:w-3/4 lg:w-1/2 p-6 relative">
-      <!-- Top-right X -->
-      <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+      <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl" aria-label="Close modal">&times;</button>
       <h3 class="text-xl font-bold mb-4">Case Study 1: Setup &amp; Solution</h3>
       <p class="mb-4">Our customer is a distributor of classical music media. On the first of each month, a central distribution center
       receives several PDF reports of the previous month's shipping. Each PDF report contains the customer name, location, and inventory
       ordered. The inventory includes standard information such as descriptions, quantities, unit costs, and total costs. A regional executive 
       would like to distill these reports from all customers for the first quarter to identify the most popular composers.</p>
-      <!-- Embed Video -->
-<div class="mb-4 w-full sm:w-3/4 lg:w-1/2 max-w-3xl mx-auto relative" style="padding-top:56.25%;">
-  <iframe
-    class="absolute inset-0 w-full h-full"
-    data-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    title="Case Study Video"
-    src=""
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
-</div>
-      <p class="mb-6">Using in-house solutions provided by IDS, we were able to deliver an automated report that showcases a high level summary
+      <!-- Video -->
+      <div class="mb-6 w-full sm:w-3/4 lg:w-1/2 max-w-3xl mx-auto relative" style="padding-top:56.25%;">
+        <video controls muted loop class="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg" preload="none" data-src="/images/PortfolioProject1.mp4">
+          <source data-src="/images/PortfolioProject1.mp4" type="video/mp4" />
+          Your browser doesn’t support HTML5 video.
+        </video>
+      </div>
+      <p class="mb-4">Using in-house solutions provided by IDS, we were able to deliver an automated report that showcases a high level summary
       of the following:</p>
-        <ul class="list-disc list-outside pl-6 space-y-1 text-gray-800">
+      <ul class="list-disc list-outside pl-6 space-y-1 text-gray-800 mb-6">
           <li>Composers Ranked by Total Sales [$] - Quarter 1</li>
           <li>Composers Ranked by Total Sales [$] - January</li>
           <li>Composers Ranked by Total Sales [$] - February</li>
           <li>Composers Ranked by Total Sales [$] - March</li>
           <li>Composers Ranked by Total Sales [$] - April</li>
-          <li>Composers Ranked by Total Volume of Sales [Quantity] - Quarter 1</li>
+          <li>Composers Ranked by Total Volume of Sales [Quantity] - Quarterly</li>
           <li>Top Composers by Region - Total Sales [$]</li>
-        </ul>
-      <br>
-      <!-- Bottom Close -->
-      <button onclick="closeModal('modal1')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-        Close
-      </button>
-    </div>
-  </div>
-<!--
-  <div id="modal2" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg overflow-auto max-h-full w-full sm:w-3/4 lg:w-1/2 p-6 relative">
-      <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-      <h3 class="text-xl font-bold mb-4">Case Study 2: Setup & Solution</h3>
-      <p class="mb-4">Describe your dashboard project setup and requirements here…</p>
-      <div class="mb-4">
-        <iframe class="w-full h-48 sm:h-64" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-      </div>
-      <p class="mb-6">Explain how you built and deployed the dashboard, tech stack, etc.</p>
-      <button onclick="closeModal('modal2')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-        Close
-      </button>
+      </ul>
+      <button onclick="closeModal('modal1')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Close</button>
     </div>
   </div>
 
-  <div id="modal3" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg overflow-auto max-h-full w-full sm:w-3/4 lg:w-1/2 p-6 relative">
-      <button onclick="closeModal('modal3')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-      <h3 class="text-xl font-bold mb-4">Case Study 3: Setup & Solution</h3>
-      <p class="mb-4">Outline the price-tracker architecture, scraping cadence, and data flow…</p>
-      <div class="mb-4">
-        <iframe class="w-full h-48 sm:h-64" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-      </div>
-      <p class="mb-6">Discuss how the solution drove insights and ROI.</p>
-      <button onclick="closeModal('modal3')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-        Close
-      </button>
-    </div>
-  </div>
--->
   <!-- Footer -->
   <footer class="bg-white border-t py-6">
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-      <p class="text-gray-600">&copy; 2025 Integral Data Systems</p>
-      <a href="https://integraldata.info/contact/" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
-        Contact Us
-      </a>
-      <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer"
-         class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
-        <span class="text-white font-bold">in</span>
-      </a>
+      <p class="text-gray-600">&copy; 2025 Integral Data Systems</p>
+      <a href="https://integraldata.info/contact/" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">Contact Us</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"><span class="text-white font-bold">in</span></a>
     </div>
   </footer>
 </body>
 </html>
-
