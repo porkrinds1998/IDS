@@ -11,44 +11,40 @@
       document.getElementById('menu').classList.toggle('hidden');
     }
 
-    // Open modal & lazy-load media
+    // Open modal & (re)load media
     function openModal(id) {
       const modal = document.getElementById(id);
 
-      // Lazy-load any iframes
+      // always re-assign iframe src
       modal.querySelectorAll('iframe').forEach(iframe => {
-        if (iframe.dataset.src && !iframe.src) {
-          iframe.src = iframe.dataset.src;
-        }
+        iframe.src = iframe.dataset.src;
       });
 
-      // Lazy-load any videos
+      // always re-assign video source and reload
       modal.querySelectorAll('video').forEach(video => {
         const srcEl = video.querySelector('source');
-        if (srcEl && srcEl.dataset.src && !srcEl.src) {
-          srcEl.src = srcEl.dataset.src;
-          video.load();
-        }
+        srcEl.src = srcEl.dataset.src;
+        video.load();
       });
 
       modal.classList.remove('hidden');
     }
 
-    // Close modal & stop media
+    // Close modal & unload media
     function closeModal(id) {
       const modal = document.getElementById(id);
 
-      // Stop and unload iframes
+      // unload iframes
       modal.querySelectorAll('iframe').forEach(iframe => {
         iframe.src = '';
       });
 
-      // Pause and unload videos
+      // pause & unload videos
       modal.querySelectorAll('video').forEach(video => {
         video.pause();
         video.currentTime = 0;
         const srcEl = video.querySelector('source');
-        if (srcEl) srcEl.src = '';
+        srcEl.src = '';
         video.load();
       });
 
@@ -87,7 +83,7 @@
         <a href="https://integraldata.info/portfolio/"    class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Portfolio</a>
         <a href="https://integraldata.info/pricing/"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Pricing</a>
         <a href="https://integraldata.info/faq/"          class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">FAQ</a>
-        <a href="https://integraldata.info/contact/"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Contact</a>/a>
+        <a href="https://integraldata.info/contact/"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Contact</a>
       </div>
     </nav>
   </header>
@@ -179,4 +175,3 @@
   </footer>
 </body>
 </html>
-
