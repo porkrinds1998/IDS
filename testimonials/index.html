@@ -4,33 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Customer Testimonials - IDS</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* temporarily disable transition when we jump from clone back to real first slide */
+    .no-transition {
+      transition: none !important;
+    }
+  </style>
   <script defer>
     function toggleMenu() {
       document.getElementById('menu').classList.toggle('hidden');
     }
 
-    // Carousel logic
-    let current = 0, slides, total, interval;
+    let current = 0,
+        lastIndex = 0,
+        slidesContainer,
+        totalSlides,
+        intervalId;
+
     function update() {
-      slides.style.transform = `translateX(-${current * 100}%)`;
+      // if we just wrapped from the cloned slide back to real-first, jump without animation
+      if (current === 0 && lastIndex === totalSlides - 1) {
+        slidesContainer.classList.add('no-transition');
+        slidesContainer.style.transform = 'translateX(0)';
+        // force reflow
+        void slidesContainer.offsetHeight;
+        slidesContainer.classList.remove('no-transition');
+      } else {
+        slidesContainer.style.transform = `translateX(-${current * 100}%)`;
+      }
+      lastIndex = current;
     }
+
+    function startAutoRotate() {
+      clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        current = (current + 1) % totalSlides;
+        update();
+      }, 4000);
+    }
+
     function nextSlide() {
-      clearInterval(interval);
-      current = (current + 1) % total;
+      current = (current + 1) % totalSlides;
       update();
+      startAutoRotate();
     }
+
     function prevSlide() {
-      clearInterval(interval);
-      current = (current - 1 + total) % total;
+      current = (current - 1 + totalSlides) % totalSlides;
       update();
+      startAutoRotate();
     }
-    window.onload = () => {
-      slides = document.getElementById('slides');
-      total = slides.children.length;
+
+    window.addEventListener('load', () => {
+      slidesContainer = document.getElementById('slides');
+      // clone first slide node and append for smooth wrap
+      const firstClone = slidesContainer.children[0].cloneNode(true);
+      slidesContainer.appendChild(firstClone);
+
+      totalSlides = slidesContainer.children.length;
+      lastIndex = 0;
+      current = 0;
       update();
-      interval = setInterval(() => { current = (current + 1) % total; update(); }, 4000);
-    };
+      startAutoRotate();
+    });
   </script>
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
@@ -42,15 +82,12 @@
         <img src="logo.png" alt="Logo" class="h-12 w-auto">
         <span class="text-2xl font-bold text-blue-900">Integral Data Systems</span>
       </a>
-      
-    <!-- Desktop-only burger -->
-    <button class="block md:hidden text-blue-900" onclick="toggleMenu()">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-      
+      <button class="block md:hidden text-blue-900" onclick="toggleMenu()" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
       <nav class="hidden md:flex space-x-6">
         <a href="https://integraldata.info/services/"     class="text-blue-700 hover:underline">Services</a>
         <a href="https://integraldata.info/testimonials/" class="text-blue-700 hover:underline">Testimonials</a>
@@ -71,7 +108,6 @@
         <a href="https://integraldata.info/contact/"      class="block text-blue-700 hover:bg-blue-50 rounded px-3 py-2">Contact</a>
       </div>
     </nav>
-    
   </header>
 
   <!-- Main content -->
@@ -85,29 +121,40 @@
       <div id="slides" class="flex transition-transform duration-700 ease-in-out">
         <!-- Slide 1 -->
         <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
-          <img src="logo.png" alt="Client 1"
-               class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          <a href="https://integraldata.info/" target="_blank" rel="noopener">
+            <img src="logo.png" alt="Client 1"
+                 class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          </a>
           <p class="italic text-base sm:text-lg text-center">
             “IDS automated our invoice processing and saved us over $6,000 a year.”
           </p>
         </div>
+
         <!-- Slide 2 -->
         <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
-          <img src="logo2.png" alt="Client 2"
-               class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          <a href="https://integraldata.info/" target="_blank" rel="noopener">
+            <img src="logo2.png" alt="Client 2"
+                 class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          </a>
           <p class="italic text-base sm:text-lg text-center">
             “The dashboards IDS built changed how we track performance.”
           </p>
         </div>
+
         <!-- Slide 3 -->
         <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-6">
-          <img src="logo_old.png" alt="Client 3"
-               class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          <a href="https://integraldata.info/" target="_blank" rel="noopener">
+            <img src="logo_old.png" alt="Client 3"
+                 class="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"/>
+          </a>
           <p class="italic text-base sm:text-lg text-center">
             “Incredible accuracy and time savings from their data pipelines.”
           </p>
         </div>
+
+        <!-- add more slides as needed, each with its own <a href="..."> -->
       </div>
+
 
       <!-- Prev arrow -->
       <button onclick="prevSlide()"
@@ -137,19 +184,27 @@
 
   <!-- Footer -->
   <footer class="bg-white border-t py-6 mt-auto">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-      <p class="text-gray-600">&copy; 2025 Integral Data Systems LLC</p>
-      <a href="https://integraldata.info/contact/"
-         class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
-        Contact Us
-      </a>
-      <a href="mailto:inquiries@integraldata.info" class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
-        <!-- simple envelope icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18V8H3v8z" />
-        </svg>
-      </a>
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-3 items-center">
+      <!-- Left: Copyright -->
+      <div class="text-gray-600">&copy; 2025 Integral Data Systems LLC</div>
+      <!-- Center: Contact Us -->
+      <div class="text-center">
+        <a href="https://integraldata.info/contact/"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
+          Contact Us
+        </a>
+      </div>
+      <!-- Right: Mail icon, right-aligned -->
+      <div class="flex justify-end">
+        <a href="mailto:inquiries@integraldata.info"
+           class="flex w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full items-center justify-center transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18V8H3v8z"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </footer>
 
