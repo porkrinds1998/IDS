@@ -162,19 +162,27 @@
 
   <!-- Footer -->
   <footer class="bg-white border-t py-6 mt-auto">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-      <p class="text-gray-600">&copy; 2025 Integral Data Systems LLC</p>
-      <a href="https://integraldata.info/contact/"
-         class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
-        Contact Us
-      </a>
-      <a href="mailto:inquiries@integraldata.info" class="w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
-        <!-- simple envelope icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18V8H3v8z" />
-        </svg>
-      </a>
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-3 items-center">
+      <!-- Left: Copyright -->
+      <div class="text-gray-600">&copy; 2025 Integral Data Systems LLC</div>
+      <!-- Center: Contact Us -->
+      <div class="text-center">
+        <a href="https://integraldata.info/contact/"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded">
+          Contact Us
+        </a>
+      </div>
+      <!-- Right: Mail icon, right-aligned -->
+      <div class="flex justify-end">
+        <a href="mailto:inquiries@integraldata.info"
+           class="flex w-8 h-8 bg-gray-400 hover:bg-blue-600 rounded-full items-center justify-center transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18V8H3v8z"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </footer>
   
