@@ -36,3 +36,4 @@ jobs:
           --allow-unauthenticated \
           --set-env-vars=INPUT_FOLDER_ID=${{ secrets.INPUT_FOLDER_ID }},OUTPUT_FOLDER_ID=${{ secrets.OUTPUT_FOLDER_ID }}
       shell: bash
+
