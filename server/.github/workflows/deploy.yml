@@ -1,0 +1,38 @@
+name: Deploy Drive Webhook → Cloud Run
+
+on:
+  push:
+    paths:
+      - 'server/**'
+      - '.github/workflows/deploy.yml'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Authenticate to GCP
+    - uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    # Build & push container to Artifact Registry (optional)
+    - uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.GCP_PROJECT }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+
+    # Deploy to Cloud Run
+    - run: |
+        gcloud run deploy hti-drive-webhook \
+          --image=gcr.io/${{ secrets.GCP_PROJECT }}/hti-drive-webhook \
+          --source=server \
+          --region=us-central1 \
+          --platform=managed \
+          --allow-unauthenticated \
+          --set-env-vars=INPUT_FOLDER_ID=${{ secrets.INPUT_FOLDER_ID }},OUTPUT_FOLDER_ID=${{ secrets.OUTPUT_FOLDER_ID }}
+      shell: bash
