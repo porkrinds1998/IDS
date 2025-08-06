@@ -9,27 +9,23 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
     - uses: actions/checkout@v3
 
-    # Authenticate to GCP
+    # 1) Authenticate to GCP using your service‐account JSON
     - uses: google-github-actions/auth@v1
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-    # Build & push container to Artifact Registry (optional)
+    # 2) Install the gcloud SDK and set your project
     - uses: google-github-actions/setup-gcloud@v1
       with:
-        project_id: ${{ secrets.GCP_PROJECT }}
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT }}   # no service_account_key here!
 
-    # Deploy to Cloud Run
+    # 3) Deploy to Cloud Run
     - run: |
         gcloud run deploy hti-drive-webhook \
-          --image=gcr.io/${{ secrets.GCP_PROJECT }}/hti-drive-webhook \
           --source=server \
           --region=us-central1 \
           --platform=managed \
