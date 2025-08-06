@@ -1,0 +1,114 @@
+% AbsenceTrackerGUI.oml
+% OML script for Compose 2025: Monarch export, copy, and Excel formatting via PowerShell
+
+% 1) Default file paths for input reports
+absenceDefault   = 'Input/AbsenceReport.xls';    % Default Absence Report input
+lateDefault      = 'Input/LateTardyReport.xls';  % Default Late/Tardy Report input
+employeeDefault  = 'Input/EmployeeReport.xlsx';  % Default Employee Report input
+
+% 2) Default export settings
+defaultExport    = 'Shift_Points.xlsx';                            % Default export filename
+exportFolder     = 'D:\\Personal\\Freelance\\HTI\\';         % Folder where Monarch writes exports
+exportSuffix     = '_Processed.xlsx';                              % Suffix for processed copy
+
+% 3) Prompt user for each source file
+absencePath  = input(sprintf('Enter path for Absence Report [%s]: ', absenceDefault), 's');
+if isempty(absencePath), absencePath = absenceDefault; end
+if exist(absencePath,'file')~=2, error('Error: Absence Report not found: %s', absencePath); end
+
+latePath     = input(sprintf('Enter path for Late/Tardy Report [%s]: ', lateDefault), 's');
+if isempty(latePath), latePath = lateDefault; end
+if exist(latePath,'file')~=2, error('Error: Late/Tardy Report not found: %s', latePath); end
+
+employeePath = input(sprintf('Enter path for Employee Report [%s]: ', employeeDefault), 's');
+if isempty(employeePath), employeePath = employeeDefault; end
+if exist(employeePath,'file')~=2, error('Error: Employee Report not found: %s', employeePath); end
+
+% 4) Confirm run
+resp = input('Run Monarch export and post-process? (Y/N): ', 's');
+if upper(resp) ~= 'Y'
+    disp('Cancelled by user.');
+    return;
+end
+
+% 5) Prompt for actual export filename (handles dynamic names)
+exportName = input(sprintf('Enter exported file name [%s]: ', defaultExport), 's');
+if isempty(exportName), exportName = defaultExport; end
+exportFile = fullfile(exportFolder, exportName);
+if exist(exportFile,'file')~=2, error('Export file not found: %s', exportFile); end
+disp(['Using export file: ', exportFile]);
+
+% 6) Compute processed file path
+dirPath = fileparts(exportFile);
+[~, baseName, ext] = fileparts(exportFile);
+processedFile = fullfile(dirPath, [baseName, exportSuffix]);
+disp(['Processed file will be: ', processedFile]);
+
+% 7) Run Monarch DPS Automation CLI
+cliExe    = '"C:\\Program Files\\Altair Monarch 2025\\DPS\\MonarchDataPrepStudio.Automation.exe"';
+dpwxFlag  = sprintf('/dpwx:"%s"', fullfile(exportFolder, 'AbsenceTracker.dpwx'));
+src2Flag  = sprintf('/src2:"%s"', absencePath);
+src3Flag  = sprintf('/src3:"%s"', latePath);
+src4Flag  = sprintf('/src4:"%s"', employeePath);
+expAllFlag = '/expall';
+cliCmd    = sprintf('%s %s %s %s %s %s', cliExe, dpwxFlag, src2Flag, src3Flag, src4Flag, expAllFlag);
+[st, out] = system(cliCmd);
+if st ~= 0
+    error('Monarch export failed:\n%s', out);
+end
+disp('Monarch export completed.');
+
+% 8) Safely overwrite processed file
+try
+    if exist(processedFile,'file')==2
+        delete(processedFile);  % Remove existing copy (ensure it's closed)
+    end
+    copyfile(exportFile, processedFile, 'f');  % Force overwrite
+    disp('Copied to processed file.');
+catch copyErr
+    error('Could not prepare processed file:\n%s', copyErr.message);
+end
+
+% 9) Write PowerShell script for Excel formatting
+psPath = fullfile(exportFolder, 'formatShiftPoints.ps1');
+fid = fopen(psPath, 'wt');
+if fid < 0, error('Cannot write PowerShell script: %s', psPath); end
+fprintf(fid, 'param([string]$filePath)\r\n');
+fprintf(fid, '$xl = New-Object -ComObject Excel.Application\r\n');
+fprintf(fid, '$xl.Visible = $false\r\n');
+fprintf(fid, '$xl.DisplayAlerts = $false\r\n');
+fprintf(fid, '$wb = $xl.Workbooks.Open($filePath)\r\n');
+fprintf(fid, '$ws = $wb.Sheets.Item(1)\r\n');
+fprintf(fid, '$last = $ws.Cells($ws.Rows.Count,2).End(-4162).Row\r\n');
+fprintf(fid, 'for($r=2; $r -le $last; $r++) {\r\n');
+fprintf(fid, '  if(-not $ws.Cells.Item($r,4).Value2 -and $ws.Cells.Item($r,3).Value2) { $ws.Cells.Item($r,4).Value2 = 0 }\r\n');
+fprintf(fid, '  if(-not $ws.Cells.Item($r,6).Value2 -and $ws.Cells.Item($r,5).Value2) { $ws.Cells.Item($r,6).Value2 = 0 }\r\n');
+fprintf(fid, '  if(-not $ws.Cells.Item($r,8).Value2 -and $ws.Cells.Item($r,7).Value2) { $ws.Cells.Item($r,8).Value2 = 0 }\r\n');
+fprintf(fid, '}\r\n');
+fprintf(fid, '$cols = @(4,6,8)\r\n');
+fprintf(fid, 'foreach($c in $cols) {\r\n');
+fprintf(fid, '  $rng = $ws.Range($ws.Cells.Item(2,$c), $ws.Cells.Item($last,$c))\r\n');
+fprintf(fid, '  try { $nums = $rng.SpecialCells(2) } catch { continue }\r\n');
+fprintf(fid, '  $nums.FormatConditions.Delete()\r\n');
+fprintf(fid, '  $nums.FormatConditions.Add(1,1,0,4.9999).Interior.Color = 65280\r\n');
+fprintf(fid, '  $nums.FormatConditions.Add(1,1,5,9.9999).Interior.Color = 65535\r\n');
+fprintf(fid, '  $nums.FormatConditions.Add(1,1,10,14.9999).Interior.Color = 42495\r\n');
+fprintf(fid, '  $nums.FormatConditions.Add(1,7,15).Interior.Color = 255\r\n');
+fprintf(fid, '}\r\n');
+fprintf(fid, '$wb.Save()\r\n');
+fprintf(fid, '$wb.Close($false)\r\n');
+fprintf(fid, '$xl.Quit()\r\n');
+fclose(fid);
+disp(['PowerShell script written to: ', psPath]);
+
+% 10) Invoke the PowerShell formatter
+psCmd = sprintf('powershell -NoProfile -ExecutionPolicy Bypass -File "%s" -filePath "%s"', psPath, processedFile);
+disp(['Running formatting via PowerShell: ', psCmd]);
+[psStatus, psOut] = system(psCmd);
+if psStatus~=0
+    warning('Formatting failed:\n%s', psOut);
+else
+    disp('Excel formatting complete. Processed file ready.');
+end
+
+% End of AbsenceTrackerGUI.oml
